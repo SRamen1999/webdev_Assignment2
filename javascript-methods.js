@@ -1,9 +1,9 @@
 // FOR EACH //
-Array.prototype.myEach = function() {
+Array.prototype.myEach = function(callbackFn) {
   // Place your code here.
   for (let i = 0; i < this.length; i++) {   
     if (this[i] === undefined) continue;
-    console.log(this[i])
+    callbackFn(this[i], i, this);
   }
 };
 
