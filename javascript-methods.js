@@ -144,4 +144,4 @@ const object1 = {
 };
 
 console.log(Object.myKeys(object1))
-console.log(Object.myValues(object1))*/
+console.log(Object.myValues(object1)) */
