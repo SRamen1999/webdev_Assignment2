@@ -61,32 +61,62 @@ Array.prototype.myIncludes = function(target) {
 // INDEXOF //
 Array.prototype.myIndexOf = function(target, index = 0) {
   // Place your code here.
-  
+  for(let i = index; i < this.length; i++){
+    if (this[i] === undefined) continue;
+
+    if(this[i] === target){
+        return i
+      }
+  }
+  return -1
 };
 
 // PUSH //
 Array.prototype.myPush = function(...args) {
   // Place your code here.
 
-  
+  var index = 0
+  let l = this.length
+  for(let i = l ; i < l + args.length; i++){
+    this[i] = args[index]
+    index++
+  }
+  return this.length
 };
 
 // LASTINDEXOF //
 Array.prototype.myLastIndexOf = function(target) {
   // Place your code here.
-  
+  for(let i = this.length -1; i >= 0; i--){
+    if(this[i] === target){
+      return i
+    }
+  }
+  return -1
 };
 
 // KEYS //
 Object.myKeys = function(obj) {
   // Place your code here.
-  
+  index = 0
+  let arr = new Array(obj.length)
+  for (const i in obj) {
+    arr[index] = i
+    index++
+  }
+  return arr
 };
 
 // VALUES //
 Object.myValues = function(obj) {
   // Place your code here.
-  
+  index = 0
+  let arr = new Array(obj.length)
+  for (const i in obj) {
+    arr[index] = obj[i]
+    index++
+  }
+  return arr
 };
 
 
@@ -100,4 +130,18 @@ const even = array1.mySome(x => x %2 ===0);
 console.log(even)
 
 console.log(array1.myReduce())
-console.log(array1.myIncludes(2))*/
+console.log(array1.myIncludes(2))
+console.log(array1.myIndexOf(1,4))
+console.log(array1)
+console.log(array1.myPush(2,3,2))
+console.log(array1)
+console.log(array1.myLastIndexOf(7))
+
+const object1 = {
+  a: 'somestring',
+  b: 42,
+  c: false
+};
+
+console.log(Object.myKeys(object1))
+console.log(Object.myValues(object1))*/
