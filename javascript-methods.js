@@ -8,24 +8,24 @@ Array.prototype.myEach = function(callbackFn) {
 };
 
 // MAP //
-Array.prototype.myMap = function() {
+Array.prototype.myMap = function(callbackFn) {
   // Place your code here.
+  //let arr = new Array(this.length)
   let arr = new Array(this.length)
   for(let i =0; i < this.length; i++){
     if (this[i] === undefined) continue;
-
-    arr[i] = this[i] * 2
+    arr[i] = (callbackFn(this[i], i, this))
   }
   return arr
 };
 
 // SOME //
-Array.prototype.mySome = function() {
+Array.prototype.mySome = function(callbackFn) {
   // Place your code here.
   for(let i =0; i < this.length; i++){
     if (this[i] === undefined) continue;
 
-    if(this[i] % 2 === 0){
+    if(callbackFn(this[i],i,this)){
       return true
     }
   }
@@ -33,24 +33,24 @@ Array.prototype.mySome = function() {
 };
 
 // REDUCE //
-Array.prototype.myReduce = function() {
+Array.prototype.myReduce = function(callbackFn) {
   // Place your code here.
-  var total = 0;
+  var total = 0
   for(let i = 0; i < this.length; i++){
     if (this[i] === undefined) continue;
-    total += this[i]
+    callbackFn(total += this[i],i,this)
   }
   return total
 
 };
 
 // INCLUDES //
-Array.prototype.myIncludes = function(target) {
+Array.prototype.myIncludes = function(aim) {
   // Place your code here.
   for(let i =0; i < this.length; i++){
     if (this[i] === undefined) continue;
 
-    if(this[i] === target){
+    if(this[i] === aim){
       return true
     }
   }
@@ -85,10 +85,10 @@ Array.prototype.myPush = function(...args) {
 };
 
 // LASTINDEXOF //
-Array.prototype.myLastIndexOf = function(target) {
+Array.prototype.myLastIndexOf = function(aim) {
   // Place your code here.
   for(let i = this.length -1; i >= 0; i--){
-    if(this[i] === target){
+    if(this[i] === aim){
       return i
     }
   }
@@ -96,11 +96,11 @@ Array.prototype.myLastIndexOf = function(target) {
 };
 
 // KEYS //
-Object.myKeys = function(obj) {
+Object.myKeys = function(currObj) {
   // Place your code here.
-  index = 0
-  let arr = new Array(obj.length)
-  for (const i in obj) {
+  var index = 0
+  let arr = new Array(currObj.length)
+  for (const i in currObj) {
     arr[index] = i
     index++
   }
@@ -108,39 +108,43 @@ Object.myKeys = function(obj) {
 };
 
 // VALUES //
-Object.myValues = function(obj) {
+Object.myValues = function(currObj) {
   // Place your code here.
-  index = 0
-  let arr = new Array(obj.length)
-  for (const i in obj) {
-    arr[index] = obj[i]
+  var index = 0
+  let arr = new Array(currObj.length)
+  for (const i in currObj) {
+    arr[index] = currObj[i]
     index++
   }
   return arr
 };
 
 
-
-/*let array1 = [6, 3,1,7,4,2];
+/*
+//testing
+let array1 = [1,3,5,7,2];
 
 array1.myEach(x => console.log(x));   
-const map1 = array1.myMap(x=> x*2);
+const map1 = array1.myMap(x => x*3);
 console.log(map1)  
-const even = array1.mySome(x => x %2 ===0);
+const even = array1.mySome(x => x %2 === 0);
 console.log(even)
-
-console.log(array1.myReduce())
+const init = 0
+const sumW = array1.myReduce((previousValue, currentValue) => previousValue + currentValue,
+init);
+console.log(sumW);
 console.log(array1.myIncludes(2))
-console.log(array1.myIndexOf(1,4))
+console.log(array1.myIndexOf(5))
 console.log(array1)
 console.log(array1.myPush(2,3,2))
 console.log(array1)
-console.log(array1.myLastIndexOf(7))
+console.log(array1.myLastIndexOf(6))
 
 const object1 = {
   a: 'somestring',
   b: 42,
-  c: false
+  c: false,
+  d: "yo"
 };
 
 console.log(Object.myKeys(object1))
